@@ -1,28 +1,16 @@
 <template>
   <form class="doctorSignupForm" @submit.prevent="handleSubmit">
     <section>
-      <About v-if="currentStep.name === 'about'" />
-      <Services v-else-if="currentStep.name === 'services'" />
+
     </section>
-    <ProgressBar v-model="currentStep.step" :max="steps.length" />
-    <BaseButton :type="buttonType" @click.native="handleClick">PRÓXIMO</BaseButton>
   </form>
 </template>
 
 <script>
 
-import About from '../components/About.vue';
-import Services from '../components/Services.vue';
-import ProgressBar from '../components/base/ProgressBar.vue';
-import BaseButton from '../components/base/BaseButton.vue';
-
 export default {
   name: 'DoctorSignupReview',
   components: {
-    About,
-    Services,
-    ProgressBar,
-    BaseButton,
   },
   props: {
     currentStep: {

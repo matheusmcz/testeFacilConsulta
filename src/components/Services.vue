@@ -75,6 +75,11 @@ export default {
       type: Object,
     },
   },
+  methods: {
+    goBack() {
+      this.$emit('back');
+    },
+  },
 };
 </script>
 

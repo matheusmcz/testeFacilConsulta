@@ -12,6 +12,7 @@
             v-model="form.name"
             placeholder="Digite seu nome completo"
             required
+            @input="$emit('update', 'name', $event)"
           ></b-form-input>
         </b-form-group>
 
@@ -22,6 +23,7 @@
             placeholder="Digite um CPF"
             required
             type="number"
+            @input="$emit('update', 'cpf', $event)"
           ></b-form-input>
         </b-form-group>
 
@@ -32,6 +34,7 @@
             placeholder="(00) 0 0000-0000"
             required
             type="number"
+            @input="$emit('update', 'cellphone', $event)"
           ></b-form-input>
         </b-form-group>
 
