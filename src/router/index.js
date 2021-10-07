@@ -5,27 +5,9 @@ Vue.use(VueRouter);
 
 const routes = [
   {
-    path: '/cadastro-medico',
-    name: 'DoctorSignUp',
-    redirect: 'cadastro-medico/form-cadastro',
-    component: () => import('../views/DoctorSignUp.vue'),
-    children: [
-      {
-        path: 'form-cadastro',
-        name: 'DoctorSignupForm',
-        component: () => import('../containers/DoctorSignupForm.vue'),
-      },
-      {
-        path: 'form-revisao',
-        name: 'DoctorSignupReview',
-        component: () => import('../containers/DoctorSignupReview.vue'),
-      },
-      {
-        path: 'cadastro-realizado',
-        name: 'DoctorSignupSuccess',
-        component: () => import('../containers/DoctorSignupSuccess.vue'),
-      },
-    ],
+    path: '/about',
+    name: 'About',
+    component: () => import('../views/About.vue'),
   },
 ];
 
