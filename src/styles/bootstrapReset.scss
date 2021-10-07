@@ -1,0 +1,40 @@
+// THIS FILE CHANGE SOME DEFAULT SETTINGS FROM BOOTSTRAP
+
+.btn-secondary {
+  color: var(--gray300);
+  border: 1px solid var(--purple300);
+  background-color: #ffffff;
+  font-family: "Open Sans", sans-serif;
+  font-size: 12px;
+  text-align: start;
+
+  &:focus {
+    color: #000000;
+    background-color: #ffffff;
+    border-color: var(--purple300);
+  }
+
+  &:hover {
+    color: var(--gray300);
+    border: 1px solid var(--purple300);
+    background-color: #ffffff;
+  }
+}
+
+.dropdown-toggle::after {
+  position: absolute;
+  margin: 12px 12px 0 0;
+  vertical-align: 0;
+  top: 0;
+  right: 0;
+}
+
+.show > .btn-secondary.dropdown-toggle {
+  color: #000000;
+  background-color: #ffffff;
+  border-color: var(--purple300);
+}
+
+.m-md-2 {
+  margin: 0;
+}
