@@ -1,8 +1,8 @@
 <template>
   <form class="doctorSignupForm" @submit.prevent="handleSubmit">
     <section>
-      <About v-if="currentStep.name === 'about'" :form="form" />
-      <Services v-else-if="currentStep.name === 'services'" :form="form" />
+      <About v-if="currentStep.name === 'about'" :form="form" @update="handleUpdateForm" />
+      <Services v-else-if="currentStep.name === 'services'" :form="form" @back="handleBack" />
     </section>
     <div class="cardFooter">
       <ProgressBar v-model="currentStep.step" :max="steps.length" />
@@ -12,7 +12,7 @@
 </template>
 
 <script>
-
+import { mapActions, mapGetters } from 'vuex';
 import About from '../components/About.vue';
 import Services from '../components/Services.vue';
 import ProgressBar from '../components/base/ProgressBar.vue';
@@ -39,28 +39,34 @@ export default {
           step: 2,
         },
       ],
-      form: {
-        name: '',
-        cpf: '',
-        cellPhone: '',
-        state: '',
-        city: '',
-      },
+      form: {},
     };
   },
+  mounted() {
+    this.form = { ...this.formData };
+  },
   computed: {
+    ...mapGetters({ formData: 'signup/getSignupForm' }),
     isLastStep() {
       return this.currentStep.step === this.steps.length;
     },
   },
   methods: {
+    ...mapActions('signup', ['setSignupForm']),
     handleClick() {
       if (!this.isLastStep) {
         this.currentStep = this.steps.find((item) => item.step === this.currentStep.step + 1);
+      } else {
+        this.$router.push({ name: 'DoctorSignupReview' });
       }
     },
-    handleSubmit() {
-      console.log('submit-form');
+    handleUpdateForm(field, event) {
+      const form = {};
+      form[field] = event;
+      this.setSignupForm(form);
+    },
+    handleBack() {
+      this.currentStep = this.steps.find((item) => item.step === this.currentStep.step - 1);
     },
   },
 };

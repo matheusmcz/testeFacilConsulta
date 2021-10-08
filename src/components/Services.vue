@@ -1,5 +1,6 @@
 <template>
   <div class="services">
+    <!-- <button @click="goBack">Voltar</button> -->
     <b-form v-if="show">
       <div class="cardHeader">
         <h1 class="about-professional">Sobre o atendimento</h1>
@@ -73,6 +74,11 @@ export default {
     form: {
       default: () => ({}),
       type: Object,
+    },
+  },
+  methods: {
+    goBack() {
+      this.$emit('back');
     },
   },
 };
