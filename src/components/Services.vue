@@ -9,9 +9,12 @@
 
       <div class="skills">
         <b-form-group id="input-group-1" label="Especialidade principal*" label-for="input-1">
-          <b-dropdown id="dropdown-1" text="Selecione a especialidade" class="m-md-2">
-            <b-dropdown-item>First Action</b-dropdown-item>
-          </b-dropdown>
+          <b-form-select
+            v-model="form.skill"
+            id="dropdown-1"
+            :options="skills"
+            @input="$emit('update', 'skill', $event)"
+          ></b-form-select>
         </b-form-group>
       </div>
 
@@ -19,24 +22,48 @@
         Informe o preço da consulta*
       </label>
       <b-input-group prepend="R$" class="mb-2 mr-sm-2 mb-sm-0">
-        <b-form-input id="inline-form-input-username" placeholder="Valor"></b-form-input>
+        <b-form-input
+          v-model="form.prize"
+          id="inline-form-input-username"
+          placeholder="Valor"
+          v-mask="'###,##'"
+          @input="handlePrize"
+        ></b-form-input>
       </b-input-group>
 
-      <section class="paymentMethod">
+      <b-form-checkbox-group class="paymentMethod" v-model="form.paymentMethod">
         <label class="paymentTitle">Formas de pagamento da consulta*</label>
+
         <div class="moneyMethod">
-          <input type="checkbox" name="dinheiro" id="money">
-          <span class="moneyLabel">Em dinheiro</span>
+          <b-form-checkbox
+            type="checkbox"
+            name="paymentMethod"
+            id="money"
+            value="Dinheiro"
+            @input="$emit('update', 'paymentMethod')"
+          >Em Dinheiro</b-form-checkbox>
         </div>
+
         <div class="pixMethod">
-          <input type="checkbox" name="pix" id="pix">
-          <span class="pixLabel">Pix</span>
+          <b-form-checkbox
+            type="checkbox"
+            name="paymentMethod"
+            id="pix"
+            value="Pix"
+            @input="$emit('update', 'paymentMethod')"
+          >Pix</b-form-checkbox>
         </div>
+
         <div class="credCardMethod">
-          <b-button v-b-toggle.collapse-1>
-            <input type="checkbox" name="credCard" id="credCard">
-          </b-button>
-            Cartão de crédito
+            <b-form-checkbox
+              v-b-toggle.collapse-1
+              type="checkbox"
+              name="paymentMethod"
+              id="credCard"
+              value="Cartão de crédito"
+              @input="$emit('update', 'paymentMethod')"
+            >Cartão de crédito</b-form-checkbox>
+
           <b-collapse id="collapse-1" class="mt-2">
             <span>Parcelamento em:</span>
             <b-card>
@@ -53,7 +80,7 @@
             </b-card>
           </b-collapse>
         </div>
-      </section>
+      </b-form-checkbox-group>
     </b-form>
     <div class="image">
       <img src="../assets/backgroundImg/backgroundImg02.png" alt="Background image">
@@ -68,6 +95,14 @@ export default {
   data() {
     return {
       show: true,
+      skills: [
+        'Cardiologia',
+        'Dermatologia',
+        'Neurologia',
+        'Oftalmologia',
+        'Psiquiatria',
+        'Urologia',
+      ],
     };
   },
   props: {
@@ -79,6 +114,15 @@ export default {
   methods: {
     goBack() {
       this.$emit('back');
+    },
+    handlePrize(value) {
+      if (Number(value) < 3) {
+        this.$emit('update', 'prize', 3);
+      } else if (Number(value) > 350) {
+        this.$emit('update', 'prize', 350);
+      } else {
+        this.$emit('update', 'prize', value);
+      }
     },
   },
 };
@@ -116,9 +160,16 @@ export default {
       width: 100%;
 
       #dropdown-1 {
-        display: flex;
         margin-top: 8px;
         width: 100%;
+        height: 32px;
+        border-radius: 8px;
+        background-color: transparent;
+        border: 1px solid var(--purple300);
+
+        opition {
+          border-radius: 8px;
+        }
 
         &::placeholder {
           font-family: 'Open Sans', sans-serif;
@@ -190,6 +241,10 @@ export default {
       color: var(--black600);
     };
   };
+
+  #credCard {
+    margin-right: 24px;
+  }
 
   .btn-secondary {
     border: none;

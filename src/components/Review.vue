@@ -10,33 +10,38 @@
         <section>
           <div class="fullName">
             Nome completo
-            <span class="fullNameLabel">Matheus Vieira do Nascimento</span>
+            <span class="fullNameLabel">{{formData.name}}</span>
           </div>
 
           <div class="cpf">
             CPF
-            <span class="cpfLabel">085.125.674-06</span>
+            <span class="cpfLabel">{{formData.cpf}}</span>
           </div>
 
           <div class="cellNumber">
             Número de celular ou telefone
-            <span class="cellNumberLabel">(82) 9 9828-6769</span>
+            <span class="cellNumberLabel">{{formData.cellphone}}</span>
           </div>
 
           <div class="state">
             Estado/Cidade
-            <span class="stateLabel">Rio Grande do Sul - Pelotas</span>
+            <span class="stateLabel">{{formData.state.name}} / {{formData.city}}</span>
+          </div>
+
+          <div class="prize">
+            Especialidade
+            <span class="prizeLabel">{{formData.skill}}</span>
           </div>
 
           <div class="prize">
             Preço da consulta
-            <span class="prizeLabel">R$ 200,00</span>
+            <span class="prizeLabel">{{formData.prize}}</span>
           </div>
 
           <div class="paymentMethod">
             Formas de pagamento da consulta
             <span class="paymentMethodLabel">
-              Cartão de crédtido - Parcelamento em 2x sem juros
+              {{paymentMethods}}
             </span>
           </div>
         </section>
@@ -49,6 +54,8 @@
 </template>
 
 <script>
+
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'Review',
@@ -66,6 +73,12 @@ export default {
   methods: {
     goBack() {
       this.$emit('back');
+    },
+  },
+  computed: {
+    ...mapGetters({ formData: 'signup/getSignupForm' }),
+    paymentMethods() {
+      return this.formData.paymentMethod.join(', ');
     },
   },
 };

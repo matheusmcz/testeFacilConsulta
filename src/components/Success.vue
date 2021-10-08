@@ -6,11 +6,12 @@
           <h1 class="about-professional">Cadastro realizado com sucesso!</h1>
         </div>
         <span class="message">
-          Seja bem vindo Matheus Vieira
+          Seja bem vindo:
+          {{formData.name}}
         </span>
       </b-form>
 
-       <div class="cardFooter">
+      <div class="cardFooter">
         <button>
           <img src="../assets/checked.icon.svg" alt="">
         </button>
@@ -25,6 +26,8 @@
 
 <script>
 
+import { mapGetters } from 'vuex';
+
 export default {
   name: 'DoctorSignupSuccess',
   props: {
@@ -38,19 +41,9 @@ export default {
     },
   },
   computed: {
-    isLastStep() {
-      return this.currentStep.step === this.steps.length;
-    },
+    ...mapGetters({ formData: 'signup/getSignupForm' }),
     buttonType() {
       return this.isLastStep ? 'submit' : 'button';
-    },
-  },
-  methods: {
-    handleClick() {
-      return !this.isLastStep && this.$emit('change-step', this.currentStep.step + 1);
-    },
-    handleSubmit() {
-      return this.$emit('submit-form');
     },
   },
 };

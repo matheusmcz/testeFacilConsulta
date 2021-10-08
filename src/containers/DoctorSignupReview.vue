@@ -63,7 +63,7 @@ export default {
     border-radius: 40px 40px 0 0;
     background: var(--white300);
     border: none;
-  }
+  };
 
   @media (min-width: 1024px) {
     .doctorSignupForm {
@@ -71,13 +71,13 @@ export default {
       padding: 32px 0px 32px 100px;
       box-shadow: 10px 10px 8px rgba(0, 0, 0, 0.12);
       border-radius: 40px;
-    }
+    };
       .cardFooter {
         display: flex;
         flex-direction: column;
         width: 42%;
         align-items: center;
         justify-content: center;
-      }
-  }
+      };
+  };
 </style>

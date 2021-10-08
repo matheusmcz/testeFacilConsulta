@@ -1,8 +1,17 @@
 <template>
   <form class="doctorSignupForm" @submit.prevent="handleSubmit">
     <section>
-      <About v-if="currentStep.name === 'about'" :form="form" @update="handleUpdateForm" />
-      <Services v-else-if="currentStep.name === 'services'" :form="form" @back="handleBack" />
+      <About
+        v-if="currentStep.name === 'about'"
+        :form="form"
+        @update="handleUpdateForm"
+      />
+      <Services
+        v-else-if="currentStep.name === 'services'"
+        :form="form"
+        @back="handleBack"
+        @update="handleUpdateForm"
+      />
     </section>
     <div class="cardFooter">
       <ProgressBar v-model="currentStep.step" :max="steps.length" />
@@ -60,10 +69,8 @@ export default {
         this.$router.push({ name: 'DoctorSignupReview' });
       }
     },
-    handleUpdateForm(field, event) {
-      const form = {};
-      form[field] = event;
-      this.setSignupForm(form);
+    handleUpdateForm() {
+      this.setSignupForm(this.form);
     },
     handleBack() {
       this.currentStep = this.steps.find((item) => item.step === this.currentStep.step - 1);
