@@ -40,15 +40,23 @@
 
         <div class="location-section">
           <b-form-group id="input-group-4" label="Estado*" label-for="input-4">
-            <b-dropdown id="dropdown-1" text="Selecione" class="m-md-2">
-              <b-dropdown-item>First Action</b-dropdown-item>
-            </b-dropdown>
+            <b-form-select
+              id="dropdown-1"
+              v-model="form.state"
+              :options="states"
+              @input="handleSelectState"
+            >
+            </b-form-select>
           </b-form-group>
 
-          <b-form-group id="input-group-5" label="Cidade*" label-for="input-5">
-            <b-dropdown id="dropdown-1" text="Selecione" class="m-md-2">
-              <b-dropdown-item>First Action</b-dropdown-item>
-            </b-dropdown>
+          <b-form-group id="input-group-4" label="Cidade*" label-for="input-4">
+            <b-form-select
+              id="dropdown-1"
+              v-model="form.city"
+              :options="selectedState.cities"
+              @input="handleSelectCity"
+            >
+            </b-form-select>
           </b-form-group>
         </div>
       </b-form>
@@ -68,12 +76,72 @@ export default {
         lastStep: 2,
       },
       show: true,
+      states: [
+        {
+          text: 'Paraná',
+          value: {
+            name: 'Paraná',
+            cities: [
+              {
+                text: 'Londrina',
+                value: 'Londrina',
+              },
+              {
+                text: 'Maringá',
+                value: 'Maringá',
+              },
+            ],
+          },
+        },
+        {
+          text: 'Rio Grande do Sul',
+          value: {
+            name: 'Rio Grande do Sul',
+            cities: [
+              {
+                text: 'Pelotas',
+                value: 'Pelotas',
+              },
+              {
+                text: 'Porto Alegre',
+                value: 'Porto Alegre',
+              },
+            ],
+          },
+        },
+        {
+          text: 'Santa Catarina',
+          value: {
+            name: 'Santa Catarina',
+            cities: [
+              {
+                text: 'Florianópolis',
+                value: 'Florianópolis',
+              },
+              {
+                text: 'Joinville',
+                value: 'Joinville',
+              },
+            ],
+          },
+        },
+      ],
+      selectedState: {},
     };
   },
   props: {
     form: {
       default: () => ({}),
       type: Object,
+    },
+  },
+  methods: {
+    handleSelectState(state) {
+      this.selectedState = { ...state };
+      this.$emit('update', 'state', state);
+    },
+    handleSelectCity(city) {
+      this.$emit('update', 'city', city);
     },
   },
 };
