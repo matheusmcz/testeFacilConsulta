@@ -4,8 +4,8 @@
       <Review />
     </section>
     <div class="cardFooter">
-      <SubmitButton>CADASTRAR PROFISSIONAL</SubmitButton>
-      <FallBackButton>Editar cadastro</FallBackButton>
+      <SubmitButton @click.native="handleClick">CADASTRAR PROFISSIONAL</SubmitButton>
+      <FallBackButton @click.native="handleClick('goBack')">Editar cadastro</FallBackButton>
     </div>
   </form>
 </template>
@@ -22,30 +22,34 @@ export default {
     SubmitButton,
     FallBackButton,
   },
-  props: {
-    currentStep: {
-      default: () => ({}),
-      type: Object,
-    },
-    steps: {
-      default: () => [],
-      type: Array,
-    },
+  data() {
+    return {
+      currentStep: { name: 'about', step: 1 },
+      steps: [
+        {
+          name: 'about',
+          step: 1,
+        },
+        {
+          name: 'services',
+          step: 2,
+        },
+      ],
+    };
   },
   computed: {
     isLastStep() {
       return this.currentStep.step === this.steps.length;
     },
-    buttonType() {
-      return this.isLastStep ? 'submit' : 'button';
-    },
   },
   methods: {
-    handleClick() {
-      return !this.isLastStep && this.$emit('change-step', this.currentStep.step + 1);
-    },
-    handleSubmit() {
-      return this.$emit('submit-form');
+    handleClick(action) {
+      if (action && action === 'goBack') {
+        this.$router.push({ name: 'DoctorSignupForm' });
+      } else {
+        console.log(action);
+        this.$router.push({ name: 'DoctorSignupSuccess' });
+      }
     },
   },
 };
@@ -68,12 +72,12 @@ export default {
       box-shadow: 10px 10px 8px rgba(0, 0, 0, 0.12);
       border-radius: 40px;
     }
-    .cardFooter {
-      display: flex;
-      flex-direction: column;
-      width: 42%;
-      align-items: center;
-      justify-content: center;
-    }
+      .cardFooter {
+        display: flex;
+        flex-direction: column;
+        width: 42%;
+        align-items: center;
+        justify-content: center;
+      }
   }
 </style>

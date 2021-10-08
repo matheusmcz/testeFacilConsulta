@@ -1,28 +1,18 @@
 <template>
-  <form class="doctorSignupForm" @submit.prevent="handleSubmit">
+  <div class="doctorSignupSuccess" @submit.prevent="handleSubmit">
     <section>
-      <About v-if="currentStep.name === 'about'" />
-      <Services v-else-if="currentStep.name === 'services'" />
+      <Success />
     </section>
-    <ProgressBar v-model="currentStep.step" :max="steps.length" />
-    <BaseButton :type="buttonType" @click.native="handleClick">PRÓXIMO</BaseButton>
-  </form>
+  </div>
 </template>
 
 <script>
-
-import About from '../components/About.vue';
-import Services from '../components/Services.vue';
-import ProgressBar from '../components/base/ProgressBar.vue';
-import BaseButton from '../components/base/BaseButton.vue';
+import Success from '../components/Success.vue';
 
 export default {
   name: 'DoctorSignupSuccess',
   components: {
-    About,
-    Services,
-    ProgressBar,
-    BaseButton,
+    Success,
   },
   props: {
     currentStep: {
@@ -54,12 +44,28 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .doctorSignupForm {
-    margin-top: 50px;
+   .doctorSignupSuccess {
+     margin-top: 50px;
+     height: 100vh;
     box-shadow: none;
     padding: 50px 16px 70px 16px;
     border-radius: 40px 40px 0 0;
     background: var(--white300);
     border: none;
-  }
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+   };
+
+   @media (min-width: 1024px) {
+     .doctorSignupSuccess {
+       height: auto;
+       margin: 0;
+      padding: 32px 0px 32px 100px;
+      box-shadow: 10px 10px 8px rgba(0, 0, 0, 0.12);
+      border-radius: 40px;
+      align-items: start;
+     };
+   };
 </style>
