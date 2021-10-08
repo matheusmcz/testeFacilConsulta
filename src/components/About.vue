@@ -12,6 +12,8 @@
             v-model="form.name"
             placeholder="Digite seu nome completo"
             required
+            min="'3'"
+            max="'48'"
             @input="$emit('update', 'name', $event)"
           ></b-form-input>
         </b-form-group>
@@ -22,9 +24,13 @@
             v-model="form.cpf"
             placeholder="Digite um CPF"
             required
-            type="number"
+            v-mask="'###.###.###-##'"
             @input="$emit('update', 'cpf', $event)"
           ></b-form-input>
+          <sub
+            v-if="form.cpf.length === 14 && !isValidCpf(form.cpf)"
+            class="cpfValidation"
+          >CPF inválido</sub>
         </b-form-group>
 
         <b-form-group id="input-group-3" label="Número de celular*" label-for="input-3">
@@ -33,7 +39,7 @@
             v-model="form.cellphone"
             placeholder="(00) 0 0000-0000"
             required
-            type="number"
+            v-mask="'(##) # ####-####'"
             @input="$emit('update', 'cellphone', $event)"
           ></b-form-input>
         </b-form-group>
@@ -67,6 +73,9 @@
 </template>
 
 <script>
+
+import { isValid as isValidCpf } from '@fnando/cpf';
+
 export default {
   name: 'About',
   data() {
@@ -143,6 +152,7 @@ export default {
     handleSelectCity(city) {
       this.$emit('update', 'city', city);
     },
+    isValidCpf,
   },
 };
 </script>
@@ -218,6 +228,10 @@ export default {
   .image {
     display: none;
   };
+
+  .cpfValidation {
+    color: var(--bs-danger);
+  }
 
   @media(min-width: 1024px) {
     .about {

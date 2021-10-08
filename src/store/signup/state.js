@@ -2,12 +2,12 @@ export default {
   form: {
     name: '',
     cpf: '',
-    cellPhone: '',
+    cellphone: '',
     state: '',
     city: '',
     skill: '',
     prize: '',
-    paymentMethod: '',
+    paymentMethod: [],
     parcel: '',
   },
 };
