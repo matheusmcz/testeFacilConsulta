@@ -7,7 +7,7 @@
         </div>
         <span class="message">
           Seja bem vindo:
-          {{formData.name}}
+          <p class="userName">{{formData.name}}</p>
         </span>
       </b-form>
 
@@ -65,13 +65,19 @@ export default {
   };
 
     .message {
-      display: flex;
+      display: grid;
       align-items: center;
       justify-content: center;
+      justify-items: center;
       margin-top: 32px;
       font-size: 24px;
       font-weight: 700;
     };
+
+    .userName {
+      margin-top: 16px;
+      text-align: center;
+    }
 
   .image {
     display: none;
@@ -145,13 +151,24 @@ export default {
        border: none;
        border-radius: 50%;
        padding: 16px 16px;
-       background-color: var( --bs-green);
+       background-color: var(--bs-green);
 
        img {
          width: 62px;
          height: 62px;
        }
      }
-   }
+   };
+
+    .message {
+      display: grid;
+      justify-content: start;
+      justify-items: start;
+      margin-top: 28px;
+
+      .userName {
+        text-align: start;
+      };
+    };
   };
 </style>

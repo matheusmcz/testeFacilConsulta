@@ -1,6 +1,5 @@
 <template>
   <div class="services">
-    <!-- <button @click="goBack">Voltar</button> -->
     <div class="info">
       <b-form v-if="show">
         <div class="cardHeader">

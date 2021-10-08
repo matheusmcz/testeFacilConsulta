@@ -21,12 +21,13 @@ export default {
 
   @media (min-width: 1024px) {
     .doctorSignUp {
+      position: relative;
       height: 100vh;
       width: 100vw;
       flex-direction: row;
       align-items: center;
       justify-content: center;
       justify-items: center;
-    }
+    };
   }
 </style>
