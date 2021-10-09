@@ -1,6 +1,5 @@
 <template>
   <div class="services">
-    <!-- <button @click="goBack">Voltar</button> -->
     <b-form v-if="show">
       <div class="cardHeader">
         <h1 class="about-professional">Sobre o atendimento</h1>
@@ -112,9 +111,6 @@ export default {
     },
   },
   methods: {
-    goBack() {
-      this.$emit('back');
-    },
     handlePrize(value) {
       if (Number(value) < 3) {
         this.$emit('update', 'prize', 3);

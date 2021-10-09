@@ -1,5 +1,10 @@
 <template>
   <form class="doctorSignupForm" @submit.prevent="handleSubmit">
+
+    <button v-if="currentStep.name === 'services'" class="fallBack" @click="handleBack">
+      <img src="../assets/arrowBack.icon.svg" alt="">
+    </button>
+
     <section>
       <About
         v-if="currentStep.name === 'about'"
@@ -81,13 +86,23 @@ export default {
 
 <style lang="scss" scoped>
   .doctorSignupForm {
-    margin-top: 50px;
+    margin-top: 80px;
     box-shadow: none;
     padding: 50px 16px 70px 16px;
     border-radius: 40px 40px 0 0;
     background: var(--white300);
     border: none;
-  }
+  };
+
+  .fallBack {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: transparent;
+    border: none;
+    margin-left: 12px;
+    margin-top: 25px;
+  };
 
   @media (min-width: 1024px) {
     .doctorSignupForm {
@@ -95,7 +110,8 @@ export default {
       padding: 32px 0px 32px 100px;
       box-shadow: 10px 10px 8px rgba(0, 0, 0, 0.12);
       border-radius: 40px;
-    }
+      position: relative;
+    };
 
     .cardFooter {
       display: flex;
@@ -103,6 +119,16 @@ export default {
       width: 42%;
       align-items: center;
       justify-content: center;
-    }
+    };
+
+    .fallBack {
+      position: absolute;
+      top: 0;
+      left: 0;
+      margin-top: -50px;
+      margin-left: 15px;
+      background-color: transparent;
+      border: none;
+    };
   }
 </style>
