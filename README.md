@@ -66,7 +66,12 @@ Layout responsivo:
 ![Untitled (6)](https://user-images.githubusercontent.com/70182429/136636874-1342ae50-f3a8-4d57-8e14-c6644425a85c.png) ![Untitled (7)](https://user-images.githubusercontent.com/70182429/136636881-f4609c0b-021f-44be-9f5f-a987f5f1855c.png)
 
 
-
+Pontos a melhorar:
+Faltou a validação dos campos como obrigatórios, e mostrar as mensagens de alerta;
+Limitar o campo de nome: entre 3 e 48 caracteres;
+Limitar o valor do serviço: entre 30,00 e 350,00;
+Guardar e exibi parcelas do cartão (exibindo apenas a opção cartão sem as parcelas);
+O botão próximo e concluir cadastro deve ser o mesmo componente;
 
 
 
