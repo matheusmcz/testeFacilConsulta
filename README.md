@@ -8,7 +8,7 @@ Passo a passo para instalação:
 
 Clone este repositório através da linha de comando:
 
-git clone [git@github.com](mailto:git@github.com):matheusmcz/Dequa.git
+git clone git@github.com:matheusmcz/testeFacilConsulta.git
 
 Instalando as dependências:
 
