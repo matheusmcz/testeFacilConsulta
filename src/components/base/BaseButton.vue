@@ -1,6 +1,9 @@
 <template>
-  <button class="submit-button" :type="type">
-    <slot name="default" />
+  <button
+    :class="`submit-button ${this.class}`"
+    :type="type"
+  >
+    <slot name="default" />{{title}}
   </button>
 </template>
 
@@ -10,6 +13,14 @@ export default {
   props: {
     type: {
       default: 'button',
+      type: String,
+    },
+    title: {
+      default: 'PRÓXIMO',
+      type: String,
+    },
+    class: {
+      default: '',
       type: String,
     },
   },
@@ -25,12 +36,20 @@ export default {
     margin-top: 24px;
     border-radius: 50px;
     border: none;
-    background-color: var(--purple300);
-    color: var(--white300);
     font-family: 'Comfortaa', sans-serif;
     font-size: 18px;
     font-weight: 700;
     line-height: 34px;
+  };
+
+  .nextButton {
+    background-color: var(--purple300);
+    color: var(--white300);
+  };
+
+  .submitForm {
+    background-color: var(--yellow300);
+    color: var(--black600);
   };
 
   @media (min-width: 1024px) {

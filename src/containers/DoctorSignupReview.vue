@@ -7,7 +7,7 @@
       <Review />
     </section>
     <div class="cardFooter">
-      <SubmitButton @click.native="handleClick">CADASTRAR PROFISSIONAL</SubmitButton>
+      <BaseButton @click.native="handleClick" title="CADASTRAR PROFISSIONAL" class="submitForm" />
       <FallBackButton @click.native="handleClick('gotToInit')">Editar cadastro</FallBackButton>
     </div>
   </form>
@@ -15,15 +15,15 @@
 
 <script>
 import Review from '../components/Review.vue';
-import SubmitButton from '../components/base/SubmitButton.vue';
 import FallBackButton from '../components/base/FallBackButton.vue';
+import BaseButton from '../components/base/BaseButton.vue';
 
 export default {
   name: 'DoctorSignupReview',
   components: {
     Review,
-    SubmitButton,
     FallBackButton,
+    BaseButton,
   },
   props: {
     type: {
