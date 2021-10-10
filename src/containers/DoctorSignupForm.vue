@@ -20,7 +20,7 @@
     </section>
     <div class="cardFooter">
       <ProgressBar v-model="currentStep.step" :max="steps.length" />
-      <BaseButton @click.native="handleClick">PRÓXIMO</BaseButton>
+      <BaseButton @click.native="handleClick" class="nextButton" />
     </div>
   </form>
 </template>
