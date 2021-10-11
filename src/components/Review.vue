@@ -34,7 +34,7 @@
 
           <div class="prize">
             Preço da consulta
-            <span class="prizeLabel">{{formData.prize}}</span>
+            <span class="prizeLabel">R$ {{formData.prize}}</span>
           </div>
 
           <div class="paymentMethod">
