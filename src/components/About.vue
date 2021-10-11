@@ -6,17 +6,20 @@
           <h2 class="professional-data">Dados do profissional</h2>
         </div>
 
-        <b-form-group id="input-group-1" label="Nome completo*" label-for="input-1">
-          <b-form-input
-            id="input-1"
-            v-model="form.name"
-            placeholder="Digite seu nome completo"
-            required
-            min="'3'"
-            max="'48'"
-            @input="$emit('update', 'name', $event)"
-          ></b-form-input>
-        </b-form-group>
+        <div id="input-group-1">
+          <b-form>
+            <label for="feedback-name">Nome completo*</label>
+            <b-form-input
+              v-model="form.name"
+              id="feedback-name"
+              class="input-1"
+              @input="$emit('update', 'name', $event)"
+            ></b-form-input>
+            <b-form-invalid-feedback :state="validation">
+              Nome deve ter entre 3 e 48 caracteres
+            </b-form-invalid-feedback>
+          </b-form>
+        </div>
 
         <b-form-group id="input-group-2" label="CPF*" label-for="input-2">
           <b-form-input
@@ -136,7 +139,14 @@ export default {
         },
       ],
       selectedState: {},
+      name: '',
+      fullName: '',
     };
+  },
+  computed: {
+    validation() {
+      return this.form.name.length >= 3 && this.form.name.length <= 48;
+    },
   },
   props: {
     form: {
@@ -189,8 +199,8 @@ export default {
     font-family: 'Open Sans', sans-serif;
     font-size: 12px;
 
-    #input-1,
-    #input-2,
+    .input-1,
+    .input-2,
     #input-3 {
       margin-top: 8px;
       border: 1px solid var(--purple300);

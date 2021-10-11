@@ -3,6 +3,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import Vue from 'vue';
 import VueTheMask from 'vue-the-mask';
+import Vuelidate from 'vuelidate';
 import App from './App.vue';
 import router from './router';
 import store from './store';
@@ -13,6 +14,7 @@ Vue.config.productionTip = false;
 Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
 Vue.use(VueTheMask);
+Vue.use(Vuelidate);
 
 new Vue({
   router,
